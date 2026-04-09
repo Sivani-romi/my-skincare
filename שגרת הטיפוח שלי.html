@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>שגרת טיפוח שבועית מפורטת</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #c98393;
+  }
+
+  h2 {
+    color: #c98393;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-right: 4px solid #c98393;
+    padding-right: 10px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  /* עיצוב למסכים בינוניים (טאבלטים) */
+  @media (max-width: 1400px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { h1 { font-size: 24px; } }
+  @media (max-width: 768px) { h2 { font-size: 18px; } }
+
+  /* עיצוב למובייל - גלילה אופקית */
+  @media (max-width: 600px) {
+    .grid {
+      display: flex; /* משנה את הגריד לשורה אחת */
+      overflow-x: auto; /* מאפשר גלילה ימינה ושמאלה */
+      scroll-snap-type: x mandatory; /* נועל את הכרטיסייה למרכז */
+      -webkit-overflow-scrolling: touch; /* גלילה חלקה באייפון */
+      padding-bottom: 15px;
+      gap: 15px;
+    }
+    
+    .card {
+      min-width: 85%; /* מאפשר לראות קצת מהכרטיסייה הבאה */
+      scroll-snap-align: center;
+      flex-shrink: 0;
+    }
+    
+    h1 { font-size: 20px; }
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0;
+  }
+
+  .day {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #c98393;
+    border-bottom: 2px solid #fcf5f6;
+    padding-bottom: 5px;
+    text-align: center;
+  }
+
+  .section {
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .morning { background: #f7e6e9; }
+  .night   { background: #eee6ff; }
+
+  .step {
+    margin: 10px 0;
+    border-bottom: 1px dotted rgba(0,0,0,0.08);
+    font-weight: 500;
+  }
+
+.section.morning {
+  font-size: 20px;
+  font-weight: bold; 
+}
+
+.section.morning .step {
+  font-size: 15px; 
+  font-weight: normal; 
+}
+
+.section.night {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.section.night .step {
+  font-size: 15px; 
+  font-weight: normal; 
+}
+
+  .active-highlight {
+    color: #d63031;
+    font-weight: bold;
+  }
+
+  .goal {
+    background: #fcf5f6;
+    font-size: 11px;
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: auto;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .rules-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+  }
+
+  th, td {
+    text-align: right;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+
+  th { background-color: #fcf5f6; color: #c98393; }
+
+  .warning-box {
+    background: #fff5f5;
+    border-right: 5px solid #ff7675;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .product-img { max-width: 60px; height: 60px; object-fit: contain; }
+
+  .warning-box h3 { color: #d63031; margin: 0 0 10px 0; }
+</style>
+</head>
+<body>
+
+<h1>✨ שגרת הטיפוח שלי ✨</h1>
+
+<div class="grid">
+
+<div class="card">
+  <div class="day">ראשון</div>
+  <div class="section morning">🌞 בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון CeraVe</div>
+    <div class="step">🧪 ניאצינמיד</div>
+    <div class="step active-highlight">💊 דיפרין (שכבה דקה)</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">חידוש עור וטיפול באקנה</div>
+</div>
+
+<div class="card">
+  <div class="day">שני</div>
+  <div class="section morning">☀️ בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון Anua (BHA)</div>
+    <div class="step active-highlight">🧪 Paula's Choice BHA</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">ניקוי נקבוביות עמוק</div>
+</div>
+
+<div class="card">
+  <div class="day">שלישי</div>
+  <div class="section morning">☀️ בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון CeraVe</div>
+    <div class="step">🧪 ניאצינמיד</div>
+    <div class="step active-highlight">💊 דיפרין (שכבה דקה)</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">חידוש עור וטיפול באקנה</div>
+</div>
+
+<div class="card">
+  <div class="day">רביעי</div>
+  <div class="section morning">☀️ בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון CeraVe</div>
+    <div class="step">🧪 ניאצינמיד</div>
+    <div class="step">🎯 יוסרין ספוט + בוסטר</div>
+    <div class="step">✨ סרום Axis-Y</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">שיקום והבהרת כתמים</div>
+</div>
+
+<div class="card">
+  <div class="day">חמישי</div>
+  <div class="section morning">☀️ בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון CeraVe</div>
+    <div class="step">🧪 ניאצינמיד</div>
+    <div class="step active-highlight">💊 דיפרין (שכבה דקה)</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">חידוש עור וטיפול באקנה</div>
+</div>
+
+<div class="card">
+  <div class="day">שישי</div>
+  <div class="section morning">☀️ בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון CeraVe</div>
+    <div class="step active-highlight">🩸 Mooyam Red Peel</div>
+    <div class="step">🚿 שטיפה (אחרי 10 דק')</div>
+    <div class="step">💧 לוריאל סגול (לחות)</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">פילינג שבועי יסודי</div>
+</div>
+
+<div class="card">
+  <div class="day">שבת</div>
+  <div class="section morning">☀️ בוקר
+    <div class="step">🧼 סבון Anua/COSRX</div>
+    <div class="step">💧 לוריאל סגול</div>
+    <div class="step">🎯 יוסרין ספוט קורקטור</div>
+    <div class="step">✨ יוסרין בוסטר</div>
+    <div class="step">☀️ הגנה SPF 50</div>
+  </div>
+  <div class="section night">🌙 ערב
+    <div class="step">🧼 סבון CeraVe</div>
+    <div class="step">🧪 ניאצינמיד</div>
+    <div class="step">🎯 יוסרין ספוט + בוסטר</div>
+    <div class="step">✨ סרום Axis-Y</div>
+    <div class="step">🧴 CeraVe PM</div>
+  </div>
+  <div class="goal">מנוחה, שיקום והבהרה</div>
+</div>
+
+</div>
+
+<div class="rules-container">
+<h2>📋 פירוט מוצרים והוראות שימוש</h2>
+<table>
+  <thead>
+    <tr>
+      <th>תמונה</th>
+      <th>מוצר</th>
+      <th>זמן שימוש</th>
+      <th>כמות</th>
+      <th>איך למרוח?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="images/cosrx_salicylic.png" class="product-img"></td>
+      <td class="prod-name">COSRX Salicylic</td>
+      <td><span class="badge badge-morning">בוקר</span></td>
+      <td>מטבע שקל</td>
+      <td>הקציפי בין ידיים רטובות, עסקי על פנים רטובות ושטפי.</td>
+    </tr>
+    <tr>
+      <td><img src="images/anua_bha.png" class="product-img"></td>
+      <td class="prod-name">Anua BHA</td>
+      <td><span class="badge badge-morning">בוקר</span></td>
+      <td>מטבע שקל</td>
+      <td>הקציפי בין ידיים רטובות, עסקי על פנים רטובות ושטפי.</td>
+    </tr>
+    <tr>
+      <td><img src="images/cerave_hydrating_cleanser.png" class="product-img"></td>
+      <td class="prod-name">CeraVe Hydrating Cleanser</td>
+      <td><span class="badge badge-night">ערב</span></td>
+      <td>מטבע שקל</td>
+      <td>הקציפי על פנים רטובות ושטפי היטב. ניקוי עדין.</td>
+    </tr>
+    <tr>
+      <td><img src="images/loreal_hyaluronic.png" class="product-img"></td>
+      <td class="prod-name">L'Oréal (חומצה היאלורונית)</td>
+      <td><span class="badge badge-morning">בוקר</span></td>
+      <td>2-3 טיפות</td>
+      <td>על פנים מעט לחות, מרחי על הפנים והצוואר עד לספיגה.</td>
+    </tr>
+    <tr>
+      <td><img src="images/the_ordinary_niacinamide.png" class="product-img"></td>
+      <td class="prod-name">The Ordinary Niacinamide</td>
+      <td><span class="badge badge-night">ערב</span></td>
+      <td>2-3 טיפות</td>
+      <td>על פנים נקיות, טפחי עד לספיגה.</td>
+    </tr>
+    <tr>
+      <td><img src="images/eucerin_booster_serum.png" class="product-img"></td>
+      <td class="prod-name">Eucerin Booster Serum</td>
+      <td><span class="badge badge-morning">בוקר</span></td>
+      <td>1-2 לחיצות</td>
+      <td>מרחי שכבה דקה על כל הפנים והצוואר.</td>
+    </tr>
+    <tr>
+      <td><img src="images/effaclar_duo_m.png" class="product-img"></td>
+      <td class="prod-name">Effaclar Duo+M</td>
+      <td><span class="badge badge-morning">בוקר</span></td>
+      <td>גרגיר אפונה</td>
+      <td>מרחי נקודתית על פצעים פעילים.</td>
+    </tr>
+    <tr>
+      <td><img src="images/differin_gel.png" class="product-img"></td>
+      <td class="prod-name">Differin Gel (אדפלין)</td>
+      <td><span class="badge badge-night">ערב (א, ג, ה)</span></td>
+      <td>גרגיר אפונה</td>
+      <td><strong>על פנים יבשות לחלוטין!</strong> שכבה דקה מאוד.</td>
+    </tr>
+    <tr>
+      <td><img src="images/paulas_choice_bha.png" class="product-img"></td>
+      <td class="prod-name">Paula's Choice BHA</td>
+      <td><span class="badge badge-night">ערב (ב')</span></td>
+      <td>2-3 לחיצות</td>
+      <td>שימי על פד צמר גפן ותעברי על כל הפנים. <strong>לא לשטוף.</strong></td>
+    </tr>
+    <tr>
+      <td><img src="images/axis_y_dark_spot_serum.png" class="product-img"></td>
+      <td class="prod-name">Axis-Y Dark Spot Serum</td>
+      <td><span class="badge badge-night">ערב (ר, ש)</span></td>
+      <td>גרגיר אפונה</td>
+      <td>טפחי עד לספיגה מלאה על פנים נקיות.</td>
+    </tr>
+    <tr>
+      <td><img src="images/mooyam_red_peel.png" class="product-img"></td>
+      <td class="prod-name">Mooyam Red Peel</td>
+      <td><span class="badge badge-night">ערב (ו')</span></td>
+      <td>3-4 טיפות</td>
+      <td>על פנים נקיות ויבשות. <strong>מקסימום 10 דקות</strong> ושטיפה.</td>
+    </tr>
+    <tr>
+      <td><img src="images/eucerin_spf_50.png" class="product-img"></td>
+      <td class="prod-name">Eucerin SPF 50+</td>
+      <td><span class="badge badge-morning">בוקר</span></td>
+      <td>מטבע 5 שקלים</td>
+      <td>כמות נדיבה על פנים וצוואר 15 דקות לפני השמש.</td>
+    </tr>
+    <tr>
+      <td><img src="images/cerave_pm_lotion.png" class="product-img"></td>
+      <td class="prod-name">CeraVe PM Lotion</td>
+      <td><span class="badge badge-night">ערב</span></td>
+      <td>מטבע 2 שקלים</td>
+      <td>שלב אחרון בכל ערב לנעילת לחות.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="warning-box">
+<h3>⚠️ חוקי הברזל שלך:</h3>
+<ul>
+  <li><strong>דיפרין = לילה בלבד.</strong> השימוש בבוקר אסור ומסוכן בשמש.</li>
+  <li><strong>לא לערבב:</strong> אין להשתמש בדיפרין, Paula's Choice או Mooyam באותו לילה.</li>
+  <li><strong>הגנה בתאילנד:</strong> בלי קרם הגנה SPF 50 כל בוקר, הכתמים יתכהו מחדש.</li>
+</ul>
+</div>
+
+</body>
+</html>
